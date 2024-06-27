@@ -1,0 +1,14 @@
+spring:
+  rabbitmq:
+    first:
+      host: cangn-xg.hzwesoft.com
+      port: 5672
+      virtual-host: /camellia
+      username: ga
+      password: foxhis123
+    second:
+      host: 202.107.203.91
+      port: 12321
+      virtual-host: /camellia
+      username: ga
+      password: foxhis123
