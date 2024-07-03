@@ -11,12 +11,12 @@ public interface RabbitConstent {
     /**
      * 全量微信群
      */
-    String CHAT_ROOM  = "chat-room";
+    String CHAT_ROOM = "chat-room";
 
     /**
      * 全量好友
      */
-    String CONTACT    = "contact";
+    String CONTACT = "contact";
 
     /**
      * 全量好友图片
@@ -26,5 +26,7 @@ public interface RabbitConstent {
     /**
      * 增量微信消息队列
      */
-    String MESSAGE    = "message";
+    String MESSAGE = "message";
+
+    String DIRECT_EXCHANGE = "amq.direct";
 }

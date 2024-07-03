@@ -2,8 +2,6 @@ package org.example;
 
 import org.example.constent.RabbitConstent;
 import org.junit.jupiter.api.Test;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,19 +16,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class test {
 
-    @Qualifier(value = "secondRabbitTemplate")//fistRabbitTemplate
+    @Qualifier(value = "firstRabbitTemplate")
     @Autowired
-    private RabbitTemplate rabbitTemplate;
+    private RabbitTemplate firstRabbitTemplate;
 
-    @Qualifier(value = "secondConnectionFactory")
-    private ConnectionFactory connectionFactory;
-
+    @Qualifier(value = "secondRabbitTemplate")
     @Autowired
-    private ConnectionFactory autoconnectionFactory;
+    private RabbitTemplate secondRabbitTemplate;
+
 
     @Test
     void test() {
-        rabbitTemplate.send("amq.direct", RabbitConstent.CHAT_ROOM, new Message("send message".getBytes()));
+//        firstRabbitTemplate.convertAndSend(RabbitConstent.CHAT_ROOM,"send message");
+        secondRabbitTemplate.convertAndSend(RabbitConstent.DIRECT_EXCHANGE, RabbitConstent.CHAT_ROOM, "send message");
     }
 
 

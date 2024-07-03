@@ -32,7 +32,6 @@ public class Rabbitconfig {
         factory.setUsername(username);
         factory.setPassword(password);
         factory.setVirtualHost(virtualHost);
-        System.out.println("firstConnectionFactory");
         return factory;
     }
 
@@ -47,7 +46,6 @@ public class Rabbitconfig {
         factory.setUsername(username);
         factory.setPassword(password);
         factory.setVirtualHost(virtualHost);
-        System.out.println("secondConnectionFactory");
         return factory;
     }
 
@@ -56,7 +54,6 @@ public class Rabbitconfig {
                                                               @Qualifier("secondConnectionFactory") ConnectionFactory connectionFactory) {
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         configurer.configure(factory, connectionFactory);
-        System.out.println("secondFactory");
         return factory;
     }
 
@@ -65,11 +62,10 @@ public class Rabbitconfig {
                                                              @Qualifier("firstConnectionFactory") ConnectionFactory connectionFactory) {
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         configurer.configure(factory, connectionFactory);
-        System.out.println("firstFactory");
         return factory;
     }
 
-    @Bean(name = "fistRabbitTemplate")
+    @Bean(name = "firstRabbitTemplate")
     @Primary
     public RabbitTemplate firstRabbitTemplate(@Qualifier("firstConnectionFactory") ConnectionFactory connectionFactoryA) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactoryA);
